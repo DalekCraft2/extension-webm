@@ -85,9 +85,9 @@
 	<compilerflag value="-I${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android"/>
 	
 	<file name="libvpx-generic/vpx_ports/arm_cpudetect.c" if="ios || android" />
+	<file name="libvpx-generic/vpx/src/vpx_codec.c" />
 	<file name="libvpx-generic/vpx/src/vpx_decoder.c" />
 	<file name="libvpx-generic/vpx/src/vpx_encoder.c" />
-	<file name="libvpx-generic/vpx/src/vpx_codec.c" />
 	<file name="libvpx-generic/vpx/src/vpx_image.c" />
 	<file name="libvpx-generic/vpx_dsp/vpx_dsp_rtcd.c" />
 	<file name="libvpx-generic/vpx_mem/vpx_mem.c" />
@@ -96,8 +96,8 @@
 	<file name="libvpx-generic/vpx_scale/generic/yv12config.c" />
 	<file name="libvpx-generic/vpx_scale/generic/yv12extend.c" />
 	<file name="libvpx-generic/vpx_scale/generic/gen_scalers.c" />
+	
 	<file name="libvpx-generic/vp8/common/alloccommon.c" />
-	<!-- <file name="libvpx-generic/vp8/common/asm_com_offsets.c" /> -->
 	<file name="libvpx-generic/vp8/common/blockd.c" />
 	<file name="libvpx-generic/vp8/common/debugmodes.c" />
 	<file name="libvpx-generic/vp8/common/dequantize.c" />
@@ -110,7 +110,6 @@
 	<file name="libvpx-generic/vp8/common/generic/systemdependent.c" />
 	<file name="libvpx-generic/vp8/common/idct_blk.c" />
 	<file name="libvpx-generic/vp8/common/idctllm.c" />
-	<file name="libvpx-generic/vp8/common/rtcd.c" />
 	<file name="libvpx-generic/vp8/common/vp8_loopfilter.c" />
 	<file name="libvpx-generic/vp8/common/loopfilter_filters.c" />
 	<file name="libvpx-generic/vp8/common/mbpitch.c" />
@@ -119,19 +118,36 @@
 	<file name="libvpx-generic/vp8/common/reconinter.c" />
 	<file name="libvpx-generic/vp8/common/reconintra.c" />
 	<file name="libvpx-generic/vp8/common/reconintra4x4.c" />
-	<!-- <file name="libvpx-generic/vp8/common/sad_c.c" /> -->
+	<file name="libvpx-generic/vp8/common/rtcd.c" />
 	<file name="libvpx-generic/vp8/common/setupintrarecon.c" />
 	<file name="libvpx-generic/vp8/common/swapyv12buffer.c" />
-	<!-- <file name="libvpx-generic/vp8/common/variance_c.c" /> -->
 	<file name="libvpx-generic/vp8/common/treecoder.c" />
-	<file name="libvpx-generic/vp8/vp8_dx_iface.c" />
-	<!-- <file name="libvpx-generic/vp8/decoder/asm_dec_offsets.c" /> -->
 	<file name="libvpx-generic/vp8/decoder/dboolhuff.c" />
-	<file name="libvpx-generic/vp8/decoder/decodemv.c" />
 	<file name="libvpx-generic/vp8/decoder/decodeframe.c" />
+	<file name="libvpx-generic/vp8/decoder/decodemv.c" />
 	<file name="libvpx-generic/vp8/decoder/detokenize.c" />
 	<!-- <file name="libvpx-generic/vp8/decoder/error_concealment.c" /> -->
 	<file name="libvpx-generic/vp8/decoder/onyxd_if.c" />
+	<file name="libvpx-generic/vp8/vp8_dx_iface.c" />
+
+	<!-- <file name="libvpx-generic/vp9/common/vp9_alloccommon.c" />
+	<file name="libvpx-generic/vp9/common/vp9_blockd.c" />
+	<file name="libvpx-generic/vp9/common/vp9_debugmodes.c" />
+	<file name="libvpx-generic/vp9/common/vp9_entropy.c" />
+	<file name="libvpx-generic/vp9/common/vp9_entropymode.c" />
+	<file name="libvpx-generic/vp9/common/vp9_entropymv.c" />
+	<file name="libvpx-generic/vp9/common/vp9_filter.c" />
+	<file name="libvpx-generic/vp9/common/vp9_idct.c" />
+	<file name="libvpx-generic/vp9/common/vp9_loopfilter.c" />
+	<file name="libvpx-generic/vp9/common/vp9_quant_common.c" />
+	<file name="libvpx-generic/vp9/common/vp9_reconinter.c" />
+	<file name="libvpx-generic/vp9/common/vp9_reconintra.c" />
+	<file name="libvpx-generic/vp9/common/vp9_rtcd.c" />
+	<file name="libvpx-generic/vp9/decoder/vp9_decodeframe.c" />
+	<file name="libvpx-generic/vp9/decoder/vp9_decodemv.c" />
+	<file name="libvpx-generic/vp9/decoder/vp9_detokenize.c" />
+	<file name="libvpx-generic/vp9/vp9_dx_iface.c" /> -->
+
 	<file name="libvpx-generic/vpx_config.c" />
 </files>
 
@@ -154,12 +170,7 @@
 		
 		<ext value=".so" />
 		<ext value=".ndll" if="windows || mac || linux" />
-		
-		<!--<flag value="-libpath:../libs/Windows" if="windows"/>
-		<lib name="vpx.lib" if="windows"/>
-		
-		<flag value="-L../libs/Linux" if="linux"/>
-		<lib name="-lvpx" if="linux"/>-->
+
 		<lib name="-lpthread" if="linux"/>
 		
 	</section>

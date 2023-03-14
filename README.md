@@ -1,34 +1,35 @@
-## WEBM:
+# extension-webm
 
-Information about webm:
-* https://www.webmproject.org/
+OpenFL extension for decoding [WebM](https://www.webmproject.org/) videos (mkv+vp8+vorbis) on CPP.
 
-## Setup/Installing:
+## Installation
 
-You need Haxe and OpenFL. https://openfl.org/
+You need Haxe and [OpenFL](https://openfl.org/).
 
-```
+```sh
 haxelib install openfl-webm
 ```
 
-## Simple Example:
+To add it to a Lime or OpenFL project, add this to your project file:
 
-```actionscript
-var sprite:Sprite = new Sprite();
-sprite.scaleX = 2;
-sprite.scaleY = 2;
-addChild(sprite);
+```xml
+<haxelib name="openfl-webm" />
+```
 
+## Usage
+
+```haxe
 var io:WebmIo = new WebmIoFile("c:/projects/test.webm");
-var player:WebmPlayer = new WebmPlayer(io, sprite);
-player.addEventListener('play', function(e) {
-	trace('play!');
+var player:WebmPlayer = new WebmPlayer(io, true);
+player.addEventListener(WebmEvent.PLAY, function(e) {
+	trace("Play!");
 });
-player.addEventListener('end', function(e) {
-	trace('end!');
+player.addEventListener(WebmEvent.COMPLETE, function(e) {
+	trace("Complete!");
 });
-player.addEventListener('stop', function(e) {
-	trace('stop!');
+player.addEventListener(WebmEvent.STOP, function(e) {
+	trace("Stop!");
 });
+addChild(player);
 player.play();
 ```
