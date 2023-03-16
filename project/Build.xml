@@ -1,186 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
 <xml>
 
-<set name="HXCPP_CPP11" value="1" />
+	<include name="${HXCPP}/build-tool/BuildCommon.xml" />
 
-<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
+	<files id="common">
 
-<files id="common">
-	
-	<depend name="${HXCPP}/include/hx/Macros.h"/>
-	<depend name="${HXCPP}/include/hx/CFFI.h"/>
-	
-	<compilerflag value="-Iinclude" />
-	<compilerflag value="-Ilibogg/include" />
-	<compilerflag value="-Ilibvorbis/include" />
-	<compilerflag value="-Ilibvorbis/lib" />
-	<compilerflag value="-Ilibvpx-generic" />
-	<compilerflag value="-I${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android"/>
-	
-	<file name="common/ExternalInterface.cpp" />
-	
-</files>
+		<depend name="${HXCPP}/include/hx/Macros.h" />
+		<depend name="${HXCPP}/include/hx/CFFI.h" />
 
-<files id="libs">
-	
-	<depend name="${HXCPP}/include/hx/Macros.h"/>
-	<depend name="${HXCPP}/include/hx/CFFI.h"/>
-	
-	<compilerflag value="-Iinclude" />
-	<compilerflag value="-Ilibogg/include" />
-	<compilerflag value="-Ilibvorbis/include" />
-	<compilerflag value="-Ilibvorbis/lib" />
-	<compilerflag value="-Ilibvpx-generic" />
-	<compilerflag value="-I${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android"/>
-	
-	<file name="libwebm/vttreader.cc" />
-	<file name="libwebm/webvttparser.cc" />
-	<file name="libwebm/mkvmuxer.cpp" />
-	<file name="libwebm/mkvmuxerutil.cpp" />
-	<file name="libwebm/mkvparser.cpp" />
-	<file name="libwebm/mkvreader.cpp" />
-	<file name="libwebm/mkvwriter.cpp" />
-	
-	<file name="libogg/src/bitwise.c" />
-	<file name="libogg/src/framing.c" />
-	
-	<file name="libvorbis/lib/analysis.c" />
-	<file name="libvorbis/lib/bitrate.c" />
-	<file name="libvorbis/lib/block.c" />
-	<file name="libvorbis/lib/codebook.c" />
-	<file name="libvorbis/lib/envelope.c" />
-	<file name="libvorbis/lib/floor0.c" />
-	<file name="libvorbis/lib/floor1.c" />
-	<file name="libvorbis/lib/info.c" />
-	<file name="libvorbis/lib/lookup.c" />
-	<file name="libvorbis/lib/lpc.c" />
-	<file name="libvorbis/lib/lsp.c" />
-	<file name="libvorbis/lib/mapping0.c" />
-	<file name="libvorbis/lib/mdct.c" />
-	<file name="libvorbis/lib/psy.c" />
-	<file name="libvorbis/lib/registry.c" />
-	<file name="libvorbis/lib/res0.c" />
-	<file name="libvorbis/lib/smallft.c" />
-	<file name="libvorbis/lib/synthesis.c" />
-	<file name="libvorbis/lib/vorbisenc.c" />
-	<file name="libvorbis/lib/vorbisfile.c" />
-	<file name="libvorbis/lib/window.c" />
-	<file name="libvorbis/lib/sharedbook.c" />
-	<!--
-	<file name="libvorbis/lib/tone.c" />
-	<file name="libvorbis/lib/barkmel.c" />
-	<file name="libvorbis/lib/psytune.c" />
-	-->
-</files>
+		<compilerflag value="-Iinclude" />
+		<compilerflag value="-Ilibogg/include" />
+		<compilerflag value="-Ilibvorbis/include" />
+		<compilerflag value="-Ilibvpx" />
+		<compilerflag value="-I${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android" />
 
-<files id="libvpx-generic">
-	<depend name="${HXCPP}/include/hx/Macros.h"/>
-	<depend name="${HXCPP}/include/hx/CFFI.h"/>
-	
-	<compilerflag value="-Iinclude" />
-	<compilerflag value="-Ilibogg/include" />
-	<compilerflag value="-Ilibvorbis/include" />
-	<compilerflag value="-Ilibvorbis/lib" />
-	<compilerflag value="-Ilibvpx-generic" />
-	<compilerflag value="-Ilibvpx-generic/vpx-ports" />
-	<compilerflag value="-I${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android"/>
-	
-	<file name="libvpx-generic/vpx_ports/arm_cpudetect.c" if="ios || android" />
-	<file name="libvpx-generic/vpx/src/vpx_codec.c" />
-	<file name="libvpx-generic/vpx/src/vpx_decoder.c" />
-	<file name="libvpx-generic/vpx/src/vpx_encoder.c" />
-	<file name="libvpx-generic/vpx/src/vpx_image.c" />
-	<file name="libvpx-generic/vpx_dsp/vpx_dsp_rtcd.c" />
-	<file name="libvpx-generic/vpx_mem/vpx_mem.c" />
-	<file name="libvpx-generic/vpx_scale/vpx_scale_rtcd.c" />
-	<file name="libvpx-generic/vpx_scale/generic/vpx_scale.c" />
-	<file name="libvpx-generic/vpx_scale/generic/yv12config.c" />
-	<file name="libvpx-generic/vpx_scale/generic/yv12extend.c" />
-	<file name="libvpx-generic/vpx_scale/generic/gen_scalers.c" />
-	
-	<file name="libvpx-generic/vp8/common/alloccommon.c" />
-	<file name="libvpx-generic/vp8/common/blockd.c" />
-	<file name="libvpx-generic/vp8/common/debugmodes.c" />
-	<file name="libvpx-generic/vp8/common/dequantize.c" />
-	<file name="libvpx-generic/vp8/common/entropy.c" />
-	<file name="libvpx-generic/vp8/common/entropymode.c" />
-	<file name="libvpx-generic/vp8/common/entropymv.c" />
-	<file name="libvpx-generic/vp8/common/extend.c" />
-	<file name="libvpx-generic/vp8/common/filter.c" />
-	<file name="libvpx-generic/vp8/common/findnearmv.c" />
-	<file name="libvpx-generic/vp8/common/generic/systemdependent.c" />
-	<file name="libvpx-generic/vp8/common/idct_blk.c" />
-	<file name="libvpx-generic/vp8/common/idctllm.c" />
-	<file name="libvpx-generic/vp8/common/vp8_loopfilter.c" />
-	<file name="libvpx-generic/vp8/common/loopfilter_filters.c" />
-	<file name="libvpx-generic/vp8/common/mbpitch.c" />
-	<file name="libvpx-generic/vp8/common/modecont.c" />
-	<file name="libvpx-generic/vp8/common/quant_common.c" />
-	<file name="libvpx-generic/vp8/common/reconinter.c" />
-	<file name="libvpx-generic/vp8/common/reconintra.c" />
-	<file name="libvpx-generic/vp8/common/reconintra4x4.c" />
-	<file name="libvpx-generic/vp8/common/rtcd.c" />
-	<file name="libvpx-generic/vp8/common/setupintrarecon.c" />
-	<file name="libvpx-generic/vp8/common/swapyv12buffer.c" />
-	<file name="libvpx-generic/vp8/common/treecoder.c" />
-	<file name="libvpx-generic/vp8/decoder/dboolhuff.c" />
-	<file name="libvpx-generic/vp8/decoder/decodeframe.c" />
-	<file name="libvpx-generic/vp8/decoder/decodemv.c" />
-	<file name="libvpx-generic/vp8/decoder/detokenize.c" />
-	<!-- <file name="libvpx-generic/vp8/decoder/error_concealment.c" /> -->
-	<file name="libvpx-generic/vp8/decoder/onyxd_if.c" />
-	<file name="libvpx-generic/vp8/vp8_dx_iface.c" />
+		<file name="common/ExternalInterface.cpp" />
 
-	<!-- <file name="libvpx-generic/vp9/common/vp9_alloccommon.c" />
-	<file name="libvpx-generic/vp9/common/vp9_blockd.c" />
-	<file name="libvpx-generic/vp9/common/vp9_debugmodes.c" />
-	<file name="libvpx-generic/vp9/common/vp9_entropy.c" />
-	<file name="libvpx-generic/vp9/common/vp9_entropymode.c" />
-	<file name="libvpx-generic/vp9/common/vp9_entropymv.c" />
-	<file name="libvpx-generic/vp9/common/vp9_filter.c" />
-	<file name="libvpx-generic/vp9/common/vp9_idct.c" />
-	<file name="libvpx-generic/vp9/common/vp9_loopfilter.c" />
-	<file name="libvpx-generic/vp9/common/vp9_quant_common.c" />
-	<file name="libvpx-generic/vp9/common/vp9_reconinter.c" />
-	<file name="libvpx-generic/vp9/common/vp9_reconintra.c" />
-	<file name="libvpx-generic/vp9/common/vp9_rtcd.c" />
-	<file name="libvpx-generic/vp9/decoder/vp9_decodeframe.c" />
-	<file name="libvpx-generic/vp9/decoder/vp9_decodemv.c" />
-	<file name="libvpx-generic/vp9/decoder/vp9_detokenize.c" />
-	<file name="libvpx-generic/vp9/vp9_dx_iface.c" /> -->
+	</files>
 
-	<file name="libvpx-generic/vpx_config.c" />
-</files>
+	<files id="libs">
+
+		<depend name="${HXCPP}/include/hx/Macros.h" />
+		<depend name="${HXCPP}/include/hx/CFFI.h" />
+
+		<compilerflag value="-Iinclude" />
+		<compilerflag value="-Ilibogg/include" />
+		<compilerflag value="-Ilibvorbis/include" />
+		<compilerflag value="-Ilibwebm" />
+		<compilerflag value="-I${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android" />
+
+		<file name="libwebm/webvtt/vttreader.cc" />
+		<file name="libwebm/webvtt/webvttparser.cc" />
+		<file name="libwebm/mkvmuxer/mkvmuxer.cc" />
+		<file name="libwebm/mkvmuxer/mkvmuxerutil.cc" />
+		<file name="libwebm/mkvparser/mkvparser.cc" />
+		<file name="libwebm/mkvparser/mkvreader.cc" />
+		<file name="libwebm/mkvmuxer/mkvwriter.cc" />
+
+		<file name="libogg/src/bitwise.c" />
+		<file name="libogg/src/framing.c" />
+
+		<file name="libvorbis/lib/analysis.c" />
+		<file name="libvorbis/lib/bitrate.c" />
+		<file name="libvorbis/lib/block.c" />
+		<file name="libvorbis/lib/codebook.c" />
+		<file name="libvorbis/lib/envelope.c" />
+		<file name="libvorbis/lib/floor0.c" />
+		<file name="libvorbis/lib/floor1.c" />
+		<file name="libvorbis/lib/info.c" />
+		<file name="libvorbis/lib/lookup.c" />
+		<file name="libvorbis/lib/lpc.c" />
+		<file name="libvorbis/lib/lsp.c" />
+		<file name="libvorbis/lib/mapping0.c" />
+		<file name="libvorbis/lib/mdct.c" />
+		<file name="libvorbis/lib/psy.c" />
+		<file name="libvorbis/lib/registry.c" />
+		<file name="libvorbis/lib/res0.c" />
+		<file name="libvorbis/lib/smallft.c" />
+		<file name="libvorbis/lib/synthesis.c" />
+		<file name="libvorbis/lib/vorbisenc.c" />
+		<file name="libvorbis/lib/vorbisfile.c" />
+		<file name="libvorbis/lib/window.c" />
+		<file name="libvorbis/lib/sharedbook.c" />
+
+		<!-- <file name="libvorbis/lib/tone.c" />
+		<file name="libvorbis/lib/barkmel.c" />
+		<file name="libvorbis/lib/psytune.c" /> -->
+
+	</files>
+
+	<files id="libvpx">
+		<depend name="${HXCPP}/include/hx/Macros.h" />
+		<depend name="${HXCPP}/include/hx/CFFI.h" />
+
+		<compilerflag value="-Iinclude" />
+		<compilerflag value="-Ilibvpx" />
+		<compilerflag value="-I${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android" />
+
+		<file name="libvpx/vpx_ports/arm_cpudetect.c" if="ios || android" />
+		<file name="libvpx/vpx/src/vpx_codec.c" />
+		<file name="libvpx/vpx/src/vpx_decoder.c" />
+		<file name="libvpx/vpx/src/vpx_encoder.c" />
+		<file name="libvpx/vpx/src/vpx_image.c" />
+		<file name="libvpx/vpx_dsp/vpx_dsp_rtcd.c" />
+		<file name="libvpx/vpx_mem/vpx_mem.c" />
+		<file name="libvpx/vpx_scale/vpx_scale_rtcd.c" />
+		<file name="libvpx/vpx_scale/generic/vpx_scale.c" />
+		<file name="libvpx/vpx_scale/generic/yv12config.c" />
+		<file name="libvpx/vpx_scale/generic/yv12extend.c" />
+		<file name="libvpx/vpx_scale/generic/gen_scalers.c" />
+		<file name="libvpx/vp8/common/alloccommon.c" />
+		<file name="libvpx/vp8/common/blockd.c" />
+		<file name="libvpx/vp8/common/debugmodes.c" />
+		<file name="libvpx/vp8/common/dequantize.c" />
+		<file name="libvpx/vp8/common/entropy.c" />
+		<file name="libvpx/vp8/common/entropymode.c" />
+		<file name="libvpx/vp8/common/entropymv.c" />
+		<file name="libvpx/vp8/common/extend.c" />
+		<file name="libvpx/vp8/common/filter.c" />
+		<file name="libvpx/vp8/common/findnearmv.c" />
+		<file name="libvpx/vp8/common/generic/systemdependent.c" />
+		<file name="libvpx/vp8/common/idct_blk.c" />
+		<file name="libvpx/vp8/common/idctllm.c" />
+		<file name="libvpx/vp8/common/vp8_loopfilter.c" />
+		<file name="libvpx/vp8/common/loopfilter_filters.c" />
+		<file name="libvpx/vp8/common/mbpitch.c" />
+		<file name="libvpx/vp8/common/modecont.c" />
+		<file name="libvpx/vp8/common/quant_common.c" />
+		<file name="libvpx/vp8/common/reconinter.c" />
+		<file name="libvpx/vp8/common/reconintra.c" />
+		<file name="libvpx/vp8/common/reconintra4x4.c" />
+		<file name="libvpx/vp8/common/rtcd.c" />
+		<file name="libvpx/vp8/common/setupintrarecon.c" />
+		<file name="libvpx/vp8/common/swapyv12buffer.c" />
+		<file name="libvpx/vp8/common/treecoder.c" />
+		<file name="libvpx/vp8/decoder/dboolhuff.c" />
+		<file name="libvpx/vp8/decoder/decodeframe.c" />
+		<file name="libvpx/vp8/decoder/decodemv.c" />
+		<file name="libvpx/vp8/decoder/detokenize.c" />
+		<!-- <file name="libvpx/vp8/decoder/error_concealment.c" /> -->
+		<file name="libvpx/vp8/decoder/onyxd_if.c" />
+		<file name="libvpx/vp8/vp8_dx_iface.c" />
+
+		<file name="libvpx/vpx_config.c" />
+	</files>
 
 
-<set name="OUTPUT_DIR" value="../ndll" unless="OUTPUT_DIR" />
-<set name="DEBUGEXTRA" value="-debug" if="fulldebug" />
-<set name="LIBSUFFIX" value="${HX_TARGET_SUFFIX}" if="HX_TARGET_SUFFIX" />
-<set name="LIBSUFFIX" value="${LIBEXTRA}" unless="LIBSUFFIX" />
+	<set name="OUTPUT_DIR" value="../ndll" unless="OUTPUT_DIR" />
+	<set name="DEBUGEXTRA" value="-debug" if="fulldebug" />
+	<set name="LIBSUFFIX" value="${HX_TARGET_SUFFIX}" if="HX_TARGET_SUFFIX" />
+	<set name="LIBSUFFIX" value="${LIBEXTRA}" unless="LIBSUFFIX" />
 
 
-<target id="NDLL" output="${LIBPREFIX}extension-webm${DEBUGEXTRA}${LIBSUFFIX}" tool="linker" toolid="${STD_MODULE_LINK}">
-	
-	<outdir name="${OUTPUT_DIR}/${BINDIR}" />
-	
-	<files id="common" />
-	<files id="libs" />
-	<files id="libvpx-generic" />
-	
-	<section unless="static_link">
-		
-		<ext value=".so" />
-		<ext value=".ndll" if="windows || mac || linux" />
+	<target id="NDLL" output="${LIBPREFIX}extension-webm${DEBUGEXTRA}${LIBSUFFIX}" tool="linker"
+		toolid="${STD_MODULE_LINK}">
 
-		<lib name="-lpthread" if="linux"/>
-		
-	</section>
-	
-</target>
+		<outdir name="${OUTPUT_DIR}/${BINDIR}" />
 
-<target id="default">
-	
-	<target id="NDLL"/>
-	
-</target>
+		<files id="common" />
+		<files id="libs" />
+		<files id="libvpx" />
+
+		<section unless="static_link">
+
+			<ext value=".so" />
+			<ext value=".ndll" if="windows || mac || linux" />
+
+			<lib name="-lpthread" if="linux" />
+
+		</section>
+
+	</target>
+
+	<target id="default">
+
+		<target id="NDLL" />
+
+	</target>
 
 </xml>
