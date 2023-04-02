@@ -1,3 +1,6 @@
+0.0.4
+	New builds.
+
 0.0.3
 	Changed build system. Now libvpx is built outside with optimizations.
 

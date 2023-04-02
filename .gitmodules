@@ -9,4 +9,4 @@
 	url = https://github.com/openfl/libvpx.git
 [submodule "project/libwebm"]
 	path = project/libwebm
-	url = https://github.com/openfl/libwebm.git
+	url = https://chromium.googlesource.com/webm/libwebm

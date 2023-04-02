@@ -1,11 +1,25 @@
 {
   "name": "extension-webm",
   "license": "MIT",
-  "tags": ["openfl","cpp","neko","webm","mkv","vp8","vorbis","video","formats"],
+  "tags": [
+    "openfl",
+    "cpp",
+    "neko",
+    "webm",
+    "mkv",
+    "vp8",
+    "vorbis",
+    "video",
+    "formats"
+  ],
   "description": "Support for decoding WebM video (mkv+vp8+vorbis).",
-  "contributors": ["singmajesty", "soywiz"],
+  "contributors": [
+    "singmajesty",
+    "soywiz"
+  ],
   "releasenote": "Build fixes",
   "version": "0.0.5",
   "url": "https://github.com/HaxeExtension/extension-webm",
-  "dependencies": {}
+  "dependencies": {},
+  "classPath": "src"
 }
