@@ -1,41 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xml>
-
-	<include name="${HXCPP}/build-tool/BuildCommon.xml" />
-
 	<files id="common">
-
-		<depend name="${HXCPP}/include/hx/Macros.h" />
-		<depend name="${HXCPP}/include/hx/CFFI.h" />
-
-		<compilerflag value="-Iinclude" />
-		<compilerflag value="-Ilibogg/include" />
-		<compilerflag value="-Ilibvorbis/include" />
-		<compilerflag value="-Ilibvpx" />
-		<compilerflag value="-I${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android" />
+		<compilervalue name="-I" value="libogg/include" />
+		<compilervalue name="-I" value="libvorbis/include" />
+		<compilervalue name="-I" value="libvpx" />
+		<compilervalue name="-I" value="libwebm" />
+		<compilervalue name="-I" value="${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android" />
 
 		<file name="common/ExternalInterface.cpp" />
-
 	</files>
 
 	<files id="libs">
-
-		<depend name="${HXCPP}/include/hx/Macros.h" />
-		<depend name="${HXCPP}/include/hx/CFFI.h" />
-
-		<compilerflag value="-Iinclude" />
-		<compilerflag value="-Ilibogg/include" />
-		<compilerflag value="-Ilibvorbis/include" />
-		<compilerflag value="-Ilibwebm" />
-		<compilerflag value="-I${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android" />
-
-		<file name="libwebm/webvtt/vttreader.cc" />
-		<file name="libwebm/webvtt/webvttparser.cc" />
-		<file name="libwebm/mkvmuxer/mkvmuxer.cc" />
-		<file name="libwebm/mkvmuxer/mkvmuxerutil.cc" />
-		<file name="libwebm/mkvparser/mkvparser.cc" />
-		<file name="libwebm/mkvparser/mkvreader.cc" />
-		<file name="libwebm/mkvmuxer/mkvwriter.cc" />
+		<compilervalue name="-I" value="libogg/include" />
+		<compilervalue name="-I" value="libvorbis/include" />
+		<compilervalue name="-I" value="libvpx" />
+		<compilervalue name="-I" value="libwebm" />
+		<compilervalue name="-I" value="${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android" />
 
 		<file name="libogg/src/bitwise.c" />
 		<file name="libogg/src/framing.c" />
@@ -62,20 +42,9 @@
 		<file name="libvorbis/lib/vorbisfile.c" />
 		<file name="libvorbis/lib/window.c" />
 		<file name="libvorbis/lib/sharedbook.c" />
-
 		<!-- <file name="libvorbis/lib/tone.c" />
 		<file name="libvorbis/lib/barkmel.c" />
 		<file name="libvorbis/lib/psytune.c" /> -->
-
-	</files>
-
-	<files id="libvpx">
-		<depend name="${HXCPP}/include/hx/Macros.h" />
-		<depend name="${HXCPP}/include/hx/CFFI.h" />
-
-		<compilerflag value="-Iinclude" />
-		<compilerflag value="-Ilibvpx" />
-		<compilerflag value="-I${ANDROID_NDK_ROOT}/sources/cpufeatures" if="android" />
 
 		<file name="libvpx/vpx_ports/arm_cpudetect.c" if="ios || android" />
 		<file name="libvpx/vpx/src/vpx_codec.c" />
@@ -121,41 +90,53 @@
 		<!-- <file name="libvpx/vp8/decoder/error_concealment.c" /> -->
 		<file name="libvpx/vp8/decoder/onyxd_if.c" />
 		<file name="libvpx/vp8/vp8_dx_iface.c" />
-
+		<!-- <file name="libvpx/vp9/vp9_dx_iface.c" /> -->
 		<file name="libvpx/vpx_config.c" />
-	</files>
+		<!-- <file name="libvpx/tools_common.c" />
+		<file name="libvpx/vpxdec.c" />
+		<file name="libvpx/webmdec.cc" />
+		<file name="libvpx/args.c" />
+		<file name="libvpx/ivfdec.c" />
+		<file name="libvpx/md5_utils.c" />
+		<file name="libvpx/y4menc.c" /> -->
 
+		<file name="libwebm/webvtt/vttreader.cc" />
+		<file name="libwebm/webvtt/webvttparser.cc" />
+		<file name="libwebm/mkvmuxer/mkvmuxer.cc" />
+		<file name="libwebm/mkvmuxer/mkvmuxerutil.cc" />
+		<file name="libwebm/mkvparser/mkvparser.cc" />
+		<file name="libwebm/mkvparser/mkvreader.cc" />
+		<file name="libwebm/mkvmuxer/mkvwriter.cc" />
+	</files>
 
 	<set name="OUTPUT_DIR" value="../ndll" unless="OUTPUT_DIR" />
 	<set name="DEBUGEXTRA" value="-debug" if="fulldebug" />
 	<set name="LIBSUFFIX" value="${HX_TARGET_SUFFIX}" if="HX_TARGET_SUFFIX" />
 	<set name="LIBSUFFIX" value="${LIBEXTRA}" unless="LIBSUFFIX" />
 
-
 	<target id="NDLL" output="${LIBPREFIX}extension-webm${DEBUGEXTRA}${LIBSUFFIX}" tool="linker"
 		toolid="${STD_MODULE_LINK}">
 
 		<outdir name="${OUTPUT_DIR}/${BINDIR}" />
 
+		<!-- <section if="windows">
+			<lib name="lib/libogg.lib" />
+			<lib name="lib/libvorbis.lib" />
+			<lib name="lib/libwebm.lib" />
+		</section> -->
+
 		<files id="common" />
 		<files id="libs" />
-		<files id="libvpx" />
 
 		<section unless="static_link">
-
 			<ext value=".so" />
 			<ext value=".ndll" if="windows || mac || linux" />
 
 			<lib name="-lpthread" if="linux" />
-
 		</section>
-
 	</target>
 
 	<target id="default">
-
 		<target id="NDLL" />
-
 	</target>
-
 </xml>

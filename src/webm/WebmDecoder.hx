@@ -1,11 +1,10 @@
 package webm;
 
-import cpp.Lib;
+import lime.system.System;
 import haxe.io.BytesData;
-import openfl.utils.ByteArray;
 
 class WebmDecoder {
-	private var context:Dynamic;
+	private var context:WebmDecoderContext;
 
 	public function new(io:Dynamic, soundEnabled:Bool) {
 		context = hx_webm_decoder_create(io, soundEnabled);
@@ -19,7 +18,7 @@ class WebmDecoder {
 		return hx_webm_decoder_has_more(context);
 	}
 
-	public function step(decodeVideo:Float->BytesData->Void, decodeAudio:Float->BytesData->Void):Void {
+	public function step(decodeVideo:(Float, BytesData) -> Void, decodeAudio:(Float, BytesData) -> Void):Void {
 		hx_webm_decoder_step(context, decodeVideo, decodeAudio);
 	}
 
@@ -27,9 +26,11 @@ class WebmDecoder {
 		hx_webm_decoder_restart(context);
 	}
 
-	static var hx_webm_decoder_create:Dynamic->Bool->Dynamic = Lib.load("extension-webm", "hx_webm_decoder_create", 2);
-	static var hx_webm_decoder_get_info:Dynamic->Array<Float> = Lib.load("extension-webm", "hx_webm_decoder_get_info", 1);
-	static var hx_webm_decoder_has_more:Dynamic->Bool = Lib.load("extension-webm", "hx_webm_decoder_has_more", 1);
-	static var hx_webm_decoder_step = Lib.load("extension-webm", "hx_webm_decoder_step", 3);
-	static var hx_webm_decoder_restart = Lib.load("extension-webm", "hx_webm_decoder_restart", 1);
+	static var hx_webm_decoder_create:(ioValue:Dynamic, audioEnabled:Bool) -> WebmDecoderContext = System.load("extension-webm", "hx_webm_decoder_create", 2);
+	static var hx_webm_decoder_get_info:(context:WebmDecoderContext) -> Array<Float> = System.load("extension-webm", "hx_webm_decoder_get_info", 1);
+	static var hx_webm_decoder_has_more:(context:WebmDecoderContext) -> Bool = System.load("extension-webm", "hx_webm_decoder_has_more", 1);
+	static var hx_webm_decoder_step:(context:WebmDecoderContext, decodeVideo:(Float, BytesData) -> Void, decodeAudio:(Float, BytesData) -> Void) -> Void = System.load("extension-webm", "hx_webm_decoder_step", 3);
+	static var hx_webm_decoder_restart:(context:WebmDecoderContext) -> Void = System.load("extension-webm", "hx_webm_decoder_restart", 1);
 }
+
+typedef WebmDecoderContext = Dynamic;

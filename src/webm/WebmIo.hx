@@ -1,6 +1,6 @@
 package webm;
 
-import cpp.Lib;
+import lime.system.System;
 import haxe.io.BytesData;
 
 class WebmIo {
@@ -24,5 +24,5 @@ class WebmIo {
 		return 0;
 	}
 
-	static var hx_create_io = Lib.load("extension-webm", "hx_create_io", 3);
+	static var hx_create_io:(read:(count:Int) -> BytesData, seek:(offset:Float, whence:Int) -> Int, tell:() -> Float) -> Dynamic = System.load("extension-webm", "hx_create_io", 3);
 }

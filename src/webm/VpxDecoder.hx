@@ -1,26 +1,23 @@
 package webm;
 
-import cpp.Lib;
 import haxe.io.Bytes;
 import haxe.io.BytesData;
+import lime.system.System;
 import openfl.display.BitmapData;
-import openfl.utils.ByteArray;
 
 class VpxDecoder {
-	public static var version(get, null):String;
-
-	static function get_version():String {
-		return hx_vpx_codec_iface_name();
-	}
-
-	private var context:Dynamic;
+	// public static var version(get, never):String;
+	// static function get_version():String {
+	// 	return hx_vpx_codec_iface_name();
+	// }
+	private var context:VpxDecoderContext;
 
 	public function new() {
 		context = hx_vpx_codec_dec_init();
 	}
 
-	public function decode(data:BytesData) {
-		hx_vpx_codec_decode(context, data);
+	public function decode(data:BytesData):Array<Int> {
+		return hx_vpx_codec_decode(context, data);
 	}
 
 	public function getAndRenderFrame(bitmapData:BitmapData) {
@@ -36,8 +33,10 @@ class VpxDecoder {
 		}
 	}
 
-	static var hx_vpx_codec_iface_name:Void->String = Lib.load("extension-webm", "hx_vpx_codec_iface_name", 0);
-	static var hx_vpx_codec_dec_init:Void->Dynamic = Lib.load("extension-webm", "hx_vpx_codec_dec_init", 0);
-	static var hx_vpx_codec_decode:Dynamic->BytesData->Array<Int> = Lib.load("extension-webm", "hx_vpx_codec_decode", 2);
-	static var hx_vpx_codec_get_frame:Dynamic->Array<Dynamic> = Lib.load("extension-webm", "hx_vpx_codec_get_frame", 1);
+	// static var hx_vpx_codec_iface_name:() -> String = System.load("extension-webm", "hx_vpx_codec_iface_name", 0);
+	static var hx_vpx_codec_dec_init:() -> VpxDecoderContext = System.load("extension-webm", "hx_vpx_codec_dec_init", 0);
+	static var hx_vpx_codec_decode:(context:VpxDecoderContext, data:BytesData) -> Array<Int> = System.load("extension-webm", "hx_vpx_codec_decode", 2);
+	static var hx_vpx_codec_get_frame:(context:VpxDecoderContext) -> Array<Dynamic> = System.load("extension-webm", "hx_vpx_codec_get_frame", 1);
 }
+
+typedef VpxDecoderContext = Dynamic;

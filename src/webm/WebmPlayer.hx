@@ -3,7 +3,6 @@ package webm;
 import haxe.io.Bytes;
 import haxe.io.BytesData;
 import lime.media.AudioBuffer;
-import lime.media.vorbis.VorbisFile;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.PixelSnapping;
@@ -186,10 +185,10 @@ class WebmPlayer extends Bitmap {
 	}
 
 	function outputAudioFrame(time:Float, data:BytesData) {
-		if (!soundEnabled)
-			return;
-		outputSound.position = outputSound.length;
-		outputSound.writeBytes(ByteArray.fromBytes(Bytes.ofData(data)));
-		outputSound.position = 0;
+		if (soundEnabled) {
+			outputSound.position = outputSound.length;
+			outputSound.writeBytes(ByteArray.fromBytes(Bytes.ofData(data)));
+			outputSound.position = 0;
+		}
 	}
 }

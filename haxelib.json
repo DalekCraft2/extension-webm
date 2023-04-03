@@ -20,6 +20,9 @@
   "releasenote": "Build fixes",
   "version": "0.0.5",
   "url": "https://github.com/HaxeExtension/extension-webm",
-  "dependencies": {},
+  "dependencies": {
+    "lime": "",
+    "openfl": ""
+  },
   "classPath": "src"
 }

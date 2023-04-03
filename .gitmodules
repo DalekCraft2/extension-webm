@@ -1,9 +1,9 @@
 [submodule "project/libogg"]
 	path = project/libogg
-	url = https://github.com/openfl/libogg.git
+	url = https://github.com/xiph/ogg.git
 [submodule "project/libvorbis"]
 	path = project/libvorbis
-	url = https://github.com/openfl/libvorbis.git
+	url = https://github.com/xiph/vorbis.git
 [submodule "project/libvpx"]
 	path = project/libvpx
 	url = https://github.com/openfl/libvpx.git
