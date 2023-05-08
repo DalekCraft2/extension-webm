@@ -3,6 +3,7 @@ package webm;
 import haxe.io.Bytes;
 import haxe.io.BytesData;
 import lime.media.AudioBuffer;
+import lime.media.vorbis.VorbisFile;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.PixelSnapping;
@@ -126,7 +127,7 @@ class WebmPlayer extends Bitmap {
 	}
 
 	function generateSound(e:SampleDataEvent) {
-		var totalOutputLength = outputSound.length;
+		var totalOutputLength = outputSound.length #if flash .int() #end;
 		var outputBytesToWrite = Math.min(totalOutputLength, BYTES_PER_SAMPLE).int();
 		var blankBytesToWrite = BYTES_PER_SAMPLE - outputBytesToWrite;
 
@@ -189,6 +190,13 @@ class WebmPlayer extends Bitmap {
 			outputSound.position = outputSound.length;
 			outputSound.writeBytes(ByteArray.fromBytes(Bytes.ofData(data)));
 			outputSound.position = 0;
+			// TODO Find a way to emulate the behavior of what Sound.extract() would do if it was implemented in non-Flash targets
+			// TODO Once the above is done, add Opus support
+			@:privateAccess sound.__buffer = AudioBuffer.fromVorbisFile(VorbisFile.fromBytes(outputSound));
+			if (soundChannel != null) {
+				soundChannel.stop();
+			}
+			soundChannel = sound.play(time);
 		}
 	}
 }

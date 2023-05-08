@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="https://lime.openfl.org/project/1.0.4"
+    xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://lime.openfl.org/project/1.0.4 https://lime.openfl.org/xsd/project-1.0.4.xsd">
+
+    <!-- _________________________ Application Settings _________________________ -->
+
+    <app main="Main" file="WebmTest" />
+
+    <!-- ____________________________ Window Settings ___________________________ -->
+
+    <!-- These window settings apply to all targets -->
+    <window width="1280" height="720" fps="60" background="#FFFFFF" hardware="true" vsync="false" />
+
+    <!-- HTML5-specific -->
+    <window if="html5" resizable="false" />
+
+    <!-- Desktop-specific -->
+    <window if="desktop" orientation="landscape" fullscreen="false" resizable="true" />
+
+    <!-- Mobile-specific -->
+    <window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
+
+    <!-- _____________________________ Path Settings ____________________________ -->
+
+    <source path="test/src" />
+
+    <assets path="test/assets" rename="assets" />
+
+    <set name="BUILD_DIR" value="test/bin" />
+
+    <!-- _______________________________ Libraries ______________________________ -->
+
+    <haxelib name="openfl" />
+
+    <haxelib name="openfl-webm" />
+
+    <!-- ______________________________ Haxedefines _____________________________ -->
+
+    <!-- _________________________________ Custom _______________________________ -->
+
+</project>

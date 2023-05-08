@@ -6,7 +6,7 @@
 	url = https://github.com/xiph/vorbis.git
 [submodule "project/libvpx"]
 	path = project/libvpx
-	url = https://github.com/openfl/libvpx.git
+	url = https://chromium.googlesource.com/webm/libvpx
 [submodule "project/libwebm"]
 	path = project/libwebm
 	url = https://chromium.googlesource.com/webm/libwebm

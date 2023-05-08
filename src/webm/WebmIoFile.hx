@@ -1,5 +1,6 @@
 package webm;
 
+#if sys
 import haxe.io.BytesData;
 import sys.io.File;
 import sys.io.FileInput;
@@ -32,3 +33,4 @@ class WebmIoFile extends WebmIo {
 		return fileInput.tell();
 	}
 }
+#end

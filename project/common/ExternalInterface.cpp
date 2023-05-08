@@ -7,7 +7,7 @@
 #endif
 
 #if defined(HX_WINDOWS) || defined(HX_MACOS) || defined(HX_LINUX)
-// Include neko glue....
+// Include Neko glue....
 #define NEKO_COMPATIBLE
 #endif
 
@@ -25,16 +25,13 @@
 #define NULL 0
 #endif
 
-// #undef interface
-// #define interface vpx_codec_vp9_dx()
-
 #define IVF_FILE_HDR_SZ (32)
 #define IVF_FRAME_HDR_SZ (12)
 
 #define VPX_CODEC_DISABLE_COMPAT 1
-#include "vpx/vpx_decoder.h"
-#include "vpx/vp8dx.h"
-#include "tools_common.h"
+#include <vpx/vpx_decoder.h>
+#include <vpx/vp8dx.h>
+#include <tools_common.h>
 
 #include <stdlib.h>
 
@@ -66,7 +63,6 @@ typedef struct HxWebmContext
 	// unsigned char    frameData[256*1024];
 } HxWebmContext;
 
-// extern const char *_vpx_codec_iface_name();
 extern vpx_codec_err_t _vpx_codec_dec_init(HxWebmContext *codecPointer);
 extern void _vpx_codec_destroy(HxWebmContext *codecPointer);
 extern vpx_codec_err_t _vpx_codec_decode(HxWebmContext *codecPointer, char *framePointer, int frameSize);
@@ -237,19 +233,20 @@ void YUV420toRGBA(uint8 *Y, uint8 *U, uint8 *V, int words_per_line, int width, i
 	}
 }
 
-// const char *_vpx_codec_iface_name()
-// {
-// 	return vpx_codec_iface_name(interface);
-// }
-
-static vpx_codec_ctx_t codec;
-
 vpx_codec_err_t _vpx_codec_dec_init(HxWebmContext *codecPointer)
 {
-	int flags = 0;
 	memset(codecPointer, 0, sizeof(HxWebmContext));
-	// return vpx_codec_dec_init(&codecPointer->context, get_vpx_decoder_by_name(codecPointer->context.name)->codec_interface(), NULL, flags);
-	return vpx_codec_dec_init(&codecPointer->context, vpx_codec_vp8_dx(), NULL, flags);
+
+	// printf("VPX interface: %s\n", vpx_codec_iface_name(vpx_codec_vp8_dx()));
+	// printf("VPX interface: %s\n", vpx_codec_iface_name(vpx_codec_vp9_dx()));
+	// printf("Context interface: %s\n", vpx_codec_iface_name(codecPointer->context.iface));
+
+	vpx_codec_iface_t *iface = vpx_codec_vp8_dx();
+	// vpx_codec_iface_t *iface = codecPointer->context.iface;
+
+	// printf("Used interface: %s\n", vpx_codec_iface_name(iface));
+
+	return vpx_codec_dec_init(&codecPointer->context, iface, codecPointer->context.config.dec, codecPointer->context.init_flags);
 }
 
 void _vpx_codec_destroy(HxWebmContext *codecPointer)
@@ -338,11 +335,6 @@ extern "C"
 			val_throw(alloc_string(vpx_codec_err_to_string(result)));
 		return result;
 	}
-
-	// DEFINE_FUNC_0(hx_vpx_codec_iface_name)
-	// {
-	// 	return alloc_string(_vpx_codec_iface_name());
-	// }
 
 	static void release_HxWebmContext(value inValue)
 	{

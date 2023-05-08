@@ -51,6 +51,13 @@
 		<file name="libvpx/vpx/src/vpx_decoder.c" />
 		<file name="libvpx/vpx/src/vpx_encoder.c" />
 		<file name="libvpx/vpx/src/vpx_image.c" />
+		<file name="libvpx/vpx_dsp/bitreader.c" />
+		<file name="libvpx/vpx_dsp/bitreader_buffer.c" />
+		<file name="libvpx/vpx_dsp/intrapred.c" />
+		<file name="libvpx/vpx_dsp/inv_txfm.c" />
+		<file name="libvpx/vpx_dsp/loopfilter.c" />
+		<file name="libvpx/vpx_dsp/prob.c" />
+		<file name="libvpx/vpx_dsp/vpx_convolve.c" />
 		<file name="libvpx/vpx_dsp/vpx_dsp_rtcd.c" />
 		<file name="libvpx/vpx_mem/vpx_mem.c" />
 		<file name="libvpx/vpx_scale/vpx_scale_rtcd.c" />
@@ -58,6 +65,8 @@
 		<file name="libvpx/vpx_scale/generic/yv12config.c" />
 		<file name="libvpx/vpx_scale/generic/yv12extend.c" />
 		<file name="libvpx/vpx_scale/generic/gen_scalers.c" />
+		<file name="libvpx/vpx_util/vpx_thread.c" />
+
 		<file name="libvpx/vp8/common/alloccommon.c" />
 		<file name="libvpx/vp8/common/blockd.c" />
 		<file name="libvpx/vp8/common/debugmodes.c" />
@@ -90,15 +99,45 @@
 		<!-- <file name="libvpx/vp8/decoder/error_concealment.c" /> -->
 		<file name="libvpx/vp8/decoder/onyxd_if.c" />
 		<file name="libvpx/vp8/vp8_dx_iface.c" />
-		<!-- <file name="libvpx/vp9/vp9_dx_iface.c" /> -->
-		<file name="libvpx/vpx_config.c" />
-		<!-- <file name="libvpx/tools_common.c" />
-		<file name="libvpx/vpxdec.c" />
-		<file name="libvpx/webmdec.cc" />
+
+		<file name="libvpx/vp9/common/vp9_alloccommon.c" />
+		<file name="libvpx/vp9/common/vp9_blockd.c" />
+		<file name="libvpx/vp9/common/vp9_common_data.c" />
+		<file name="libvpx/vp9/common/vp9_debugmodes.c" />
+		<file name="libvpx/vp9/common/vp9_entropy.c" />
+		<file name="libvpx/vp9/common/vp9_entropymode.c" />
+		<file name="libvpx/vp9/common/vp9_entropymv.c" />
+		<file name="libvpx/vp9/common/vp9_filter.c" />
+		<file name="libvpx/vp9/common/vp9_frame_buffers.c" />
+		<file name="libvpx/vp9/common/vp9_idct.c" />
+		<file name="libvpx/vp9/common/vp9_loopfilter.c" />
+		<file name="libvpx/vp9/common/vp9_pred_common.c" />
+		<file name="libvpx/vp9/common/vp9_quant_common.c" />
+		<file name="libvpx/vp9/common/vp9_reconinter.c" />
+		<file name="libvpx/vp9/common/vp9_reconintra.c" />
+		<file name="libvpx/vp9/common/vp9_rtcd.c" />
+		<file name="libvpx/vp9/common/vp9_scale.c" />
+		<file name="libvpx/vp9/common/vp9_scan.c" />
+		<file name="libvpx/vp9/common/vp9_seg_common.c" />
+		<file name="libvpx/vp9/common/vp9_thread_common.c" />
+		<file name="libvpx/vp9/common/vp9_tile_common.c" />
+		<file name="libvpx/vp9/decoder/vp9_decodeframe.c" />
+		<file name="libvpx/vp9/decoder/vp9_decodemv.c" />
+		<file name="libvpx/vp9/decoder/vp9_decoder.c" />
+		<file name="libvpx/vp9/decoder/vp9_detokenize.c" />
+		<file name="libvpx/vp9/decoder/vp9_dsubexp.c" />
+		<file name="libvpx/vp9/decoder/vp9_job_queue.c" />
+		<file name="libvpx/vp9/vp9_dx_iface.c" />
+		<file name="libvpx/vp9/vp9_iface_common.c" />
+
 		<file name="libvpx/args.c" />
 		<file name="libvpx/ivfdec.c" />
 		<file name="libvpx/md5_utils.c" />
-		<file name="libvpx/y4menc.c" /> -->
+		<file name="libvpx/tools_common.c" />
+		<file name="libvpx/vpx_config.c" />
+		<file name="libvpx/vpxdec.c" />
+		<file name="libvpx/webmdec.cc" />
+		<file name="libvpx/y4menc.c" />
 
 		<file name="libwebm/webvtt/vttreader.cc" />
 		<file name="libwebm/webvtt/webvttparser.cc" />
@@ -118,12 +157,6 @@
 		toolid="${STD_MODULE_LINK}">
 
 		<outdir name="${OUTPUT_DIR}/${BINDIR}" />
-
-		<!-- <section if="windows">
-			<lib name="lib/libogg.lib" />
-			<lib name="lib/libvorbis.lib" />
-			<lib name="lib/libwebm.lib" />
-		</section> -->
 
 		<files id="common" />
 		<files id="libs" />
